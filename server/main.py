@@ -1,5 +1,5 @@
 from flask import Flask, request, render_template, redirect, make_response
-
+import hashlib
 app = Flask(__name__)
 
 users = []
@@ -16,7 +16,7 @@ def register():
         if login == "" or password == "":
             return "Не были введены оба поля"
 
-        users.append({"login": login, "password": password})
+        users.append({"login": login, "password": hashlib.md5(password.encode()).hexdigest()})
         return redirect("/")
 
     else:
@@ -28,7 +28,8 @@ def login():
 
     if request.method == "POST":
         login = request.form.get("login", "")
-        password = request.form.get("password", "")
+        password = hashlib.md5((request.form.get("password", "")).encode()).hexdigest()
+
         if login == "" or password == "":
             return "Не были введены оба поля"
         for user in users:
