@@ -36,17 +36,26 @@ def login():
             if user["login"] == login and user["password"] == password:
                 response = make_response(redirect("/"))
                 response.set_cookie("login", login)
+                response.set_cookie("password", password)
                 return response
         return "Такого пользователя не существует"
-    else:
-        return render_template('login.html')
+    
+    return render_template('login.html')
 
 
-@app.route("/")
+@app.route("/", methods=["POST", "GET"])
 def index():
     login = request.cookies.get("login", "")
-    secret = user_data.get(login, "")
-    return render_template("index.html", name=login, secret=secret)
+    password=request.cookies.get("password", "")
+    for user in users:
+        if user["login"] == login and user["password"] == password:
+            secret = user_data.get(login, "")
+            return render_template("index.html", name=login, secret=secret)
+    if login=='' and password=='':
+        return redirect("/register")
+    else:
+        return redirect("/login")
+
 
 
 @app.route("/add_secret", methods=["POST", "GET"])
@@ -64,4 +73,4 @@ def secret():
 
 if __name__ == '__main__':
     app.debug = True
-    app.run(host='0.0.0.0', debug=True, port=36827)
+    app.run(host='0.0.0.0', debug=True, port=5003)
