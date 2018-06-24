@@ -1,5 +1,6 @@
 from flask import Flask, request, render_template, redirect, make_response
 import hashlib
+import socket
 app = Flask(__name__)
 
 users = []
@@ -73,4 +74,6 @@ def secret():
 
 if __name__ == '__main__':
     app.debug = True
-    app.run(host='0.0.0.0', debug=True, port=5003)
+    app.run(host='127.0.0.1', debug=True, port=8000)
+    
+
