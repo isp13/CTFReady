@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Страница пользователя</title>
+    <link rel='stylesheet' href='{{ url_for("static", filename="style.css") }}'>
+</head>
+<body>
+    <div class='nav'>
+        Страница пользователя
+    </div>
+    {% if username %}
+        <div class='info'>
+            <span class='tick'>&#10003;</span>
+            <p>
+                <span class='header'>Информация</span><br>
+                Привет, {{ username }}, твой id - {{ id }}
+            </p>
+        </div>
+        
+        <div class='create'>
+            <form method="post" action="/add_note">
+                <input type="text" name="note" size="50" placeholder="Текст заметки">
+                <input type="submit" value="Создать заметку">
+            </form>
+        </div>
+
+        <div class='notes'>
+            <h2>Заметки</h2>
+            {% for note in notes %}
+                <p class='note'>{{ note }}</p>
+            {% endfor %}
+        </div>
+
+    {% else %}
+        <p>Вы не авторизованы</p>
+    {% endif %}
+</body>
+</html>
