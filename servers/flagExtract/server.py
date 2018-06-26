@@ -13,10 +13,9 @@ threads = []
 class SuperSecretClass:
     def welcome(self):
         return 'Hi! Welcome to my SuperSecretClass! You can\'t get the flag though...'
-
+#control + (255 or space)
     def __print_flag(self):
-        with open('flag.txt') as f:
-            return f.read()
+        print('MSHP{n0t_ex4ctly_pr07ec7ed_1s_17?}')
 
     def awesome(self):
         return 'You\'re awesome :3'
@@ -35,13 +34,11 @@ class ClientThread(Thread):
             conn.send((instance.welcome() + '\n').encode())
             while True:
                 conn.send(b'> ')
-                message = conn.recv(1024)#.decode(errors='ignore').strip()
-                print(message)
-                message=message.decode(errors='ignore').strip()
+                message = conn.recv(1024).decode(errors='ignore').strip()
                 print(message)
                 try:
                     result = getattr(instance, message)()
-
+                    print(((result + '\n').encode()))
                 except:
                     if 'flag' in message:
                         conn.send(b'Don\'t hack me pls =(\n')
