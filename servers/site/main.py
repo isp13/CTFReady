@@ -1,7 +1,8 @@
 from flask import Flask, request, render_template, redirect, make_response
 import sqlite3
 
-conn = sqlite3.connect("test.db")
+
+conn = sqlite3.connect("test.db",check_same_thread = False)
 
 db = conn.cursor()
 
@@ -99,4 +100,4 @@ db.execute(create_users_table)
 db.execute(create_secret_table)
 conn.commit()
 
-app.run()
+app.run(host="0.0.0.0", port=5005)

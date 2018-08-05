@@ -1,0 +1,19 @@
+{% extends "layout.html" %}
+{% block title %}Провайдеры{% endblock %}
+{% block body %}
+    <div style="padding-left: 10px; margin-top: 20px;">
+        <h3 style="color: white;">Зарегистрированные провайдеры</h3>
+        <p class="lead" style="color: white;">
+            Эти люди уже с нами! <a href="/login" style="color: rgb(180, 236, 255);">Присоединяйтесь</a> и вы!
+        </p>
+        {% if providers %}
+            <ul style="height: 600px; overflow-y: auto; width: 500px;">
+                {% for provider in providers %}
+                    <li style="color: white;"><a href="/check/{{ provider[0] }}" style="color: rgb(180, 236, 255);">{{provider[1]}}</a></li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <h3 style="color: white;">...упс, а провайдеров ещё нет. Приходите чуть позже, они обязательно появятся! =)</h3col>
+        {% endif %}
+    </div>
+{% endblock %}

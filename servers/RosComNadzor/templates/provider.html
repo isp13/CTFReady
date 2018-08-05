@@ -1,0 +1,28 @@
+{% extends "layout.html" %}
+{% block title %}Страница провайдера{% endblock %}
+{% block body %}
+    <div style="padding-left: 10px; margin-top: 20px;">
+        <h3 style="color: white;">Здравствуйте, провайдер {{ name }}!</h3>
+        <br>
+        {% if resources %}
+        <p style="color: white;">Список заблокированных вами ресурсов:</p>
+        <ul>
+        {% for res in resources %}
+            <li style="color: white;">{{ res[1] }}</li>
+        {% endfor %}
+        </ul>
+        {% else %}
+        <h5 style="color: white;">Вы еще не блокировали ресурсы. Пора бы начать ;)</h5>
+        {% endif %}
+        <br />
+        <p style="color: white" class="lead">Заблокировать ресурс</p>
+        <form method="post" action="/add">
+            <label style="color: white;">Введите ссылку на ресурс:
+            <input type="text" style="width: 30%" name="name" placeholder="vk.com/lol">
+            <label style="color: white;">Показывать ресурс в поиске ?
+            <input type="checkbox" name="searchable" value="1">
+            </label>
+            <input type="submit" class="button warning" value="Заблокировать">
+        </form>
+    </div>
+{% endblock %}

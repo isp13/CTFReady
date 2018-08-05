@@ -1,0 +1,24 @@
+{% extends "layout.html" %}
+{% block title %}Запрещенные ресурсы{% endblock %}
+{% block body %}
+    <div style="padding-left: 10px; margin-top: 20px;">
+        {% if blocked %}
+            <h3 style="color: white;">
+                По вашему запросу найдены следующие ресурсы:
+            </h3>
+            <ul>
+                {% for res in blocked %}
+                    <li style="color: white;">{{ res }}</li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <h3 style="color: white;">По вашему запросу ничего не найдено </h3>
+        {% endif %}
+        <form method="get" action="">
+            <label style="color: white;">Найти заблокированные этим провайдером ресурсы
+                <input type="text" style="width: 30%;" name="link" placeholder="vk.com/*">
+            </label>
+            <input type="submit" class="button success" value="Найти">
+        </form>
+    </div>
+{% endblock %}

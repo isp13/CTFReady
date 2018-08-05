@@ -7,9 +7,9 @@ import os
 app = Flask(__name__)
 
 f = os.path.join(os.path.abspath(os.path.dirname(__file__)),'example.db') #Local file
-conn = sqlite3.connect(f)
+conn = sqlite3.connect(f,check_same_thread = False)
 db = conn.cursor()
-SECRET_NUM = 1337
+SECRET_NUM = 1338
 
 
 def hash_string(s):
@@ -140,4 +140,4 @@ if __name__ == '__main__':
     init_query = 'CREATE TABLE IF NOT EXISTS notes(id  integer NOT NULL PRIMARY KEY AUTOINCREMENT,text text,creator_id integer)'
     db.execute(init_query)
     conn.commit()
-    app.run(host="0.0.0.0", port=5005)
+    app.run(host="0.0.0.0", port=5005,debug=True)

@@ -1,0 +1,45 @@
+<!doctype html>
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.4.1/css/foundation.min.css" crossorigin="anonymous" />
+
+  </head>
+  <style>
+      body {
+          background-image: url(http://highlighthollywood.com/wp-content/uploads/2014/08/thewall-crows.jpg?w=573);
+          background-repeat: no-repeat;
+          background-size: 120%;
+      }
+  </style>
+  <body>
+    <div class="top-bar">
+      <div class="top-bar-left">
+        <ul class="dropdown menu" data-dropdown-menu>
+          <li class="menu-text">РосКомДозор</li>
+          <li><a href="/register">Регистрация</a></li>
+          <li><a href="/login">Вход</a></li>
+          <li><a href="/list">Список провайдеров</a></li>
+        </ul>
+      </div>
+     <div class="top-bar-right">
+       <ul class="menu">
+           <li><a href="/provider">Домашняя страница</a></li>
+       </ul>
+     </div>
+    </div>
+
+    {% block body %}{% endblock %}
+
+    <script
+  src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+  crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.4.1/js/foundation.min.js" crossorigin="anonymous"></script>
+    <script>
+      $(document).foundation();
+    </script>
+  </body>
+</html>
