@@ -123,7 +123,7 @@ def check_resource(pr_id):
     db.execute(query)
     results = db.fetchall()
     if results is None:
-        return "Provider not found or he doesnt block any resource"
+        return "error"
     resources = []
     #Try to find by prefix
 
@@ -171,13 +171,13 @@ def add_resource():
         db = conn.cursor()
         db.execute(query)
         conn.commit()
-        return redirect('/provider')
+        return redirect('/user')
     except Exception as e:
         print(e)
         return "Bad session or data", 500
 
 
-@app.route('/provider')
+@app.route('/user')
 def provider_page():
     try:
         cookie = request.cookies.get('session', None)
